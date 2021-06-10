@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, world!</title>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.5/vue.global.prod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash.shuffle@4.2.0/index.js"></script>
+</head>
+<body>
+
+    <div id="app" v-cloak>
+
+        <div id="wrapper">
+            <nav class="navbar is-spaced has-shadow">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a href="/" class="navbar-item">
+                            <b>Hello, world!</b>
+                        </a>
+                    </div>
+                    <div class="navbar-start">
+                        <a href="https://github.com/nakorndev/hello-world" class="navbar-item">
+                            <span class="icon">
+                                <img src="./icons/github.png" alt="">
+                            </span>
+                            <span>GitHub Repository</span>
+                        </a>
+                        <a href="https://www.facebook.com/nakorncode" class="navbar-item">
+                            <span class="icon">
+                                <img src="./icons/messenger.png" alt="">
+                            </span>
+                            <span>พูดคุยกับนครโค้ด</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="section">
+                <div class="container">
+                    <div v-if="isLoading" class="loading"></div>
+                    <div v-else>
+                      <div class="columns is-centered">
+                        <div class="column is-4-widescreen is-6-desktop is-7-tablet">
+                          <div class="control has-icons-left">
+                            <input v-model="search" type="search" class="input" placeholder="พิมพ์เพื่อค้นหาชื่อของคุณ">
+                            <span class="icon is-left">
+                              <img src="./icons/magnifying-glass.png" alt="" style="width: 18px;">
+                            </span>
+                          </div>
+                          <div class="message mt-2">
+                            <p class="message-body"><b>หมายเหตุ:</b> ตำแหน่งรายการชื่อจะถูกสุ่มทุกครั้งที่มีการเปิดเว็บ</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="columns is-multiline mt-5">
+                        <div v-for="(profile, index) of searchProfiles" :key="index" class="column is-4-desktop is-3-fullhd">
+                          <div class="box profile">
+                            <div class="media is-align-items-center">
+                              <div class="media-left">
+                                <img class="avatar" :src="avatarUrl(profile)" alt="">
+                              </div>
+                              <div class="media-content">
+                                <p>
+                                  <b v-if="profile.full_name">{{ profile.full_name }}</b>
+                                  <i v-else>ไม่ได้ระบุชื่อ</i>
+                                  <span v-if="profile.nickname">&nbsp;({{ profile.nickname }})</span>
+                                </p>
+                                <p>
+                                  <b>อายุ: </b>
+                                  <span v-if="profile.birth_year">
+                                    {{ new Date().getFullYear() - profile.birth_year }} ปี
+                                  </span>
+                                  <span v-else>
+                                    <i>ถูกซ่อน</i>
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+                            <div class="message is-info mt-3">
+                              <div class="message-body">
+                                <span v-if="profile.message">{{ profile.message }}</span>
+                                <i v-else>ไม่ได้ระบุข้อความ</i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <p class="has-text-centered">
+                เว็บไซต์พัฒนาโดย <a href="https://www.facebook.com/nakorncode">นครโค้ด</a> จัดทำขึ้นเพื่อฝึกฝนการใช้งาน Pull request ของ <a href="https://github.com/">GitHub</a> โดยสามารถศึกษาวิธีการเพิ่มเติมได้ที่ <a href="https://github.com/nakorncode/hello-world">nakorncode/hello-world</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

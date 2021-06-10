@@ -1,0 +1,54 @@
+[v-cloak] {
+  display: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#wrapper {
+  flex-grow: 1;
+}
+
+.box.profile {
+  height: 270px;
+}
+
+.box.profile .media-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 96px;
+}
+
+.box.profile .avatar {
+  width: 70px;
+}
+
+.box.profile .message .message-body {
+  overflow: auto;
+  height: 115px;
+}
+
+@keyframes around {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.loading {
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-top: 3px solid rgb(0, 119, 255);
+  border-left: 3px solid rgb(0, 119, 255);
+  border-right: 3px solid rgb(0, 119, 255);
+  border-bottom: 3px solid transparent;
+  animation: 750ms around linear infinite;
+}
